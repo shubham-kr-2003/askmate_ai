@@ -1,0 +1,49 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <title>ASKMATE-AI</title> 
+  <link rel="stylesheet" href="contact.css" /> 
+</head> 
+<body> 
+ 
+  <!-- Navigation Bar --> 
+  <nav class="navbar"> 
+    <div class="logo">ASKMATE-AI</div> <ul class="nav-links"> 
+      <li><a href="home.html">Home</a></li> 
+      <li><a href="services.html">services</a></li> 
+      <li><a href="about.html">about</a></li> 
+    </ul> 
+  </nav> 
+ 
+  <!-- Main Content --> 
+  <section id="home"> 
+    <h1>Welcome to ASKMATE-AI</h1> 
+    <p>Your AI-powered assistant.</p> 
+  </section> 
+ 
+  <section id="features"> 
+    <h2>Features</h2> 
+    <p>Explore the capabilities of ASKMATE-AI.</p> 
+  </section> 
+ 
+  <!-- Contact Section --> 
+  <section id="contact" class="contact-section"> 
+    <h2>Contact Us</h2> 
+    <p>Have questions or feedback? We'd love to hear from you.</p> 
+    <form action="/submit_form" method="post"> 
+      <label for="name">Name</label> 
+      <input type="text" id="name" name="name" placeholder="Your name..." required /> 
+ 
+      <label for="email">Email</label> 
+      <input type="email" id="email" name="email" placeholder="Your email..." required /> 
+ 
+      <label for="message">Message</label> 
+      <textarea id="message" name="message" placeholder="Write your message..." rows="5" 
+required></textarea>  <button type="submit">Send Message</button> 
+    </form> 
+  </section> 
+ 
+</body> 
+</html>

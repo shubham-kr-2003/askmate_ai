@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;
+}
+body{
+    display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #0f172a;
+}
+.wrapper{
+    width: 450px; background: #1e293b; border-radius: 15px; box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+}
+.wrapper .title{
+    background: #3b82f6; color: #fff; line-height: 60px; border-radius: 15px 15px 0 0; text-align: center; font-size: 20px; font-weight: 500;
+}
+.wrapper .form{
+    padding: 20px 15px; min-height: 400px; max-height: 400px; overflow-y: auto;
+}
+.inbox{
+    width: 100%; display: flex; align-items: baseline; margin-bottom: 15px;
+}
+.user-inbox{
+    justify-content: flex-end;
+}
+.inbox .msg-header{
+    max-width: 80%; margin-left: 10px;
+}
+.inbox .msg-header p{
+    color: #fff; background: #3b82f6; border-radius: 10px; padding: 8px 12px; font-size: 14px; word-break: break-all;
+}
+.user-inbox .msg-header p{
+    background: #334155;
+}
+.typing-field{
+    display: flex; height: 60px; width: 100%; align-items: center; justify-content: space-evenly; background: #1e293b; border-top: 1px solid #334155; border-radius: 0 0 15px 15px;
+}
+.typing-field .input-data{
+    height: 40px; width: 85%; position: relative;
+}
+.typing-field .input-data input{
+    height: 100%; width: 100%; outline: none; border: 1px solid #334155; padding: 0 15px; border-radius: 5px; font-size: 15px; background: #0f172a; color: #fff;
+}
+.typing-field .input-data button{
+    position: absolute; right: 5px; top: 5px; height: 30px; width: 65px; color: #fff; background: #3b82f6; border: none; border-radius: 4px; cursor: pointer;
+}
