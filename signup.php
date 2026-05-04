@@ -3,10 +3,10 @@ session_start();
 include("db.php"); 
 if($_SERVER['REQUEST_METHOD'] =="POST") 
 { 
-    $firstname = $_POST['first_name']; 
-    $lastname = $_POST['last_name']; 
-    $contact = $_POST['contact']; 
-    $email = $_POST['email']; 
+    $firstname = mysqli_real_escape_string($con, $_POST['first_name']); 
+    $lastname = mysqli_real_escape_string($con, $_POST['last_name']); 
+    $contact = mysqli_real_escape_string($con, $_POST['contact']); 
+    $email = mysqli_real_escape_string($con, $_POST['email']); 
      $password = password_hash($_POST['password'], 
     PASSWORD_DEFAULT); 
  

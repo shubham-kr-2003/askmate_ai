@@ -3,7 +3,7 @@ session_start();
 include("db.php"); 
 if($_SERVER['REQUEST_METHOD'] =="POST") 
 { 
-    $email = $_POST['email']; 
+    $email = mysqli_real_escape_string($con, $_POST['email']); 
     $password = $_POST['password']; 
  
  
@@ -14,24 +14,20 @@ if($_SERVER['REQUEST_METHOD'] =="POST")
      $result = mysqli_query($con, $query); 
  
      
-     if($result) 
-     { 
-        if($result && mysqli_num_rows($result)>0) 
-        { 
-             $user_data = mysqli_fetch_assoc($result); 
-            if($user_data['password'] == $password) 
-            { 
+      if($result && mysqli_num_rows($result) > 0) 
+      { 
+          $user_data = mysqli_fetch_assoc($result); 
+          if(password_verify($password, $user_data['password'])) 
+          { 
+              $_SESSION['user_id'] = $user_data['id']; // Recommended to store user id in session
               header("location: chat.php"); 
-       die; 
- 
-            } 
-        } 
- 
+              die; 
+          } 
       } 
-      echo"<script type='text/javascript'>alert('Wrong username or password')</script>"; 
+      echo "<script type='text/javascript'>alert('Wrong username or password')</script>"; 
    } 
-   else{ 
-    echo"<script type='text/javascript'>alert('Successfully Register')</script>"; 
+   else { 
+      echo "<script type='text/javascript'>alert('Please enter valid email and password')</script>"; 
    } 
 } 
 ?> 

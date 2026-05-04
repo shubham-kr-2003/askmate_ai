@@ -16,7 +16,7 @@ include('db.php')
  <div class="container"> 
     <h1>HELLO THERE!</h1> 
     <h2>Talk to your AskMate</h2> 
-    <a href="login.php" class="logout-button">Logout</a> 
+    <a href="logout.php" class="logout-button">Logout</a> 
  
  </div>   
  <div class="prompt-area"> 
