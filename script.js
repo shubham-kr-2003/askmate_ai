@@ -14,6 +14,46 @@ div.classList.add(className)
 div.innerHTML=html; 
 return div 
 }
+
+async function saveChat(message, role) {
+    const formData = new FormData();
+    formData.append('message', message);
+    formData.append('role', role);
+    try {
+        await fetch('save_chat.php', {
+            method: 'POST',
+            body: formData
+        });
+        loadHistory(); 
+    } catch (error) {
+        console.error('Error saving chat:', error);
+    }
+}
+
+async function loadHistory() {
+    try {
+        const response = await fetch('get_history.php');
+        const history = await response.json();
+        const historyList = document.getElementById('chat-history');
+        if (!historyList) return;
+        historyList.innerHTML = '';
+        history.forEach(item => {
+            const li = document.createElement('li');
+            li.classList.add('history-item');
+            li.innerText = item.message;
+            li.title = item.message;
+            li.addEventListener('click', () => {
+                prompt.value = item.message;
+                btn.click();
+            });
+            historyList.appendChild(li);
+        });
+    } catch (error) {
+        console.error('Error loading history:', error);
+    }
+}
+
+window.addEventListener('DOMContentLoaded', loadHistory);
 async function generateApiResponse(aiChatBox){ 
 const textElement=aiChatBox.querySelector(".text") 
 try{ 
@@ -32,6 +72,7 @@ const response=await fetch(API_URL,{
 const data=await response.json() 
 const apiResponse=data?.candidates[0].content.parts[0].text.trim(); 
 textElement.innerText=apiResponse 
+saveChat(apiResponse, 'ai'); 
  
 } 
 catch(error){ 
@@ -64,6 +105,7 @@ btn.addEventListener("click",()=>{
        container.style.display="none" 
     } 
     if(!userMessage)return; 
+    saveChat(userMessage, 'user');
   const html=` <div id="img"> 
         <img src="user.png" alt=""> 
     </div> 
