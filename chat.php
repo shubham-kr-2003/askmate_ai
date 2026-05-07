@@ -1,6 +1,11 @@
 <?php 
-include('db.php') 
-?>  
+include('db.php');
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header("location: login.php");
+    exit;
+}
+?>
  
 <!DOCTYPE html> 
 <html lang="en"> 
@@ -15,22 +20,38 @@ include('db.php')
 <body> 
  <div class="main-wrapper">
     <div class="sidebar">
-        <h2>History</h2>
+        <button class="new-chat-btn" onclick="startNewChat()">
+            <span>+</span> New Chat
+        </button>
+        <h2>Recent Chats</h2>
         <ul id="chat-history">
-            <!-- History items will be loaded here -->
+            <!-- History items will be loaded here via JS -->
         </ul>
     </div>
+    
     <div class="content">
-        <div class="container"> 
-            <h1>HELLO THERE!</h1> 
-            <h2>Talk to your AskMate</h2> 
+        <header class="chat-header">
+            <h3>AskMate AI</h3>
             <a href="logout.php" class="logout-button">Logout</a> 
-        </div>   
-        <div class="chat-container"> 
+        </header>
+
+        <div class="chat-container" id="chat-container"> 
+            <div class="welcome-container" id="welcome-message">
+                <h1>Hello There!</h1>
+                <p>How can I help you today?</p>
+            </div>
         </div> 
+
         <div class="prompt-area"> 
-            <input type="text" class="prompt" placeholder="Ask Something...."> 
-            <button class="btn"><img src="send.svg" alt="btn"></button> 
+            <div class="input-wrapper">
+                <input type="text" class="prompt" id="user-input" placeholder="Message AskMate AI..."> 
+                <button class="btn" id="send-btn">
+                    <img src="send.svg" alt="send">
+                </button> 
+            </div>
+            <p style="font-size: 10px; color: #666; text-align: center; margin-top: 10px;">
+                AskMate AI can make mistakes. Check important info.
+            </p>
         </div> 
     </div>
  </div>

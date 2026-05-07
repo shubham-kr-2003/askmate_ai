@@ -9,10 +9,11 @@ if (!isset($_SESSION['user_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user_id'];
+    $conversation_id = mysqli_real_escape_string($con, $_POST['conversation_id']);
     $message = mysqli_real_escape_string($con, $_POST['message']);
     $role = mysqli_real_escape_string($con, $_POST['role']);
 
-    $query = "INSERT INTO chats (user_id, message, role) VALUES ('$user_id', '$message', '$role')";
+    $query = "INSERT INTO chats (user_id, conversation_id, message, role) VALUES ('$user_id', '$conversation_id', '$message', '$role')";
     if (mysqli_query($con, $query)) {
         echo json_encode(['status' => 'success']);
     } else {

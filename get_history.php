@@ -8,8 +8,13 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-// Fetch unique user messages as history items
-$query = "SELECT DISTINCT message, created_at FROM chats WHERE user_id = '$user_id' AND role = 'user' ORDER BY created_at DESC LIMIT 20";
+// Har unique conversation_id ki pehli message ko title ki tarah uthana
+$query = "SELECT conversation_id, MIN(message) as title, MAX(created_at) as last_chat 
+          FROM chats 
+          WHERE user_id = '$user_id' 
+          GROUP BY conversation_id 
+          ORDER BY last_chat DESC 
+          LIMIT 20";
 $result = mysqli_query($con, $query);
 
 $history = [];
