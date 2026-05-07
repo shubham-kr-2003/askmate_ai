@@ -2,7 +2,7 @@
 // db.php - Database connection file
 $servername = "localhost"; 
 $username = "root";
-$password = "root";
+$password = ""; // XAMPP Shell se: mysqladmin -u root password ""
 $dbname = "askmate_ai";
 
 // Connection banana
